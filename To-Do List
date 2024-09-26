@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+</head>
+<style>
+    body{
+        background-color: #2e2d2dc0;
+    }
+    .tasklist{
+        height: 35px;
+        width: 90%;
+        border: 2px solid black;
+        color: rgb(249, 91, 5);
+margin-left: 50px;
+margin-top: 5px;
+    }
+        
+</style>
+<body>
+
+
+<div class="parent" style="height: 400px; width: 100%; border: 2px solid black; border-radius: 5px; background-color: thistle; margin-top: 20px;">
+    <h1 style="margin-left: 700px;">To Do List</h1>
+
+    <div class="inp" style="height: 40px; width: 90%; border: 2px solid black; border-radius: 5px; background-color: rgb(219, 160, 21); margin-top: 20px; margin-left: 50px;">
+
+<input type="text" name="task" id="task" style="width:80% ; height: 35px;"> 
+   <button style="background-color: rgb(25, 190, 100);" onclick="addTask();"><span style="font-size: large; font-weight: 600; margin-left: 10px;">Enter a task</span></button>
+    </div>
+
+
+
+
+
+
+</div>
+
+
+
+    
+</body>
+
+<script>
+function addTask(){
+
+let newTask=document.createElement('div');
+document.querySelector('.parent').appendChild(newTask);
+newTask.classList.add("tasklist");
+let data=document.getElementById("task").value;
+document.getElementById("task").value = '';
+newTask.innerHTML = 
+        `
+<input type="checkbox" style="margin-left: 20px ; margin-top: 7px;" onclick="done(this)">
+<span style="margin-top: 7px; margin-left: 15px ; font-size: larger; font-weight: bolder;" class="taskspan">${data}</span>
+<button class="delete-task" style="background-color: red; color:white; float:right; height:29px; margin-top: 3px; margin-right: 3px;" onclick="deleteTask(this)">X</button>`
+    ;
+}
+
+function deleteTask(element){
+let task = element.parentNode;
+document.querySelector('.parent').removeChild(task);
+}
+
+function done(element){
+let taskSpan = element.nextElementSibling;
+if (element.checked) {
+    taskSpan.style.color = 'green';
+}
+}
+
+</script>
+</html>
